@@ -300,7 +300,17 @@ throw new Error ('action.type "ABC" todavía no se ha definido');
 
 ---
 
-# ⚙️ 258. Redux, React Redux y RTK Query
+# ⚙️ 259. Inicio de proyecto - Redux-Tool
+
+Instalamos 'React Redux' y 'Redux Toolkit (RTK)'
+
+Para hacerlo con yarn (NO npm) y trabajando con Vite (NO Create React App) 
+```
+yarn add @reduxjs/toolkit react-redux
+```
+---
+
+# ⚙️ 258. Redux, React Redux y RTK Query (by ChatGpt)
 
 Entender la diferencia entre Redux, React Redux, React Toolkit y RTK Query puede ayudarte a escoger la herramienta adecuada para manejar el estado en tus aplicaciones de React. Aquí tienes una descripción de cada uno:
 
@@ -350,16 +360,6 @@ RTK Query se integra perfectamente con Redux y es una solución poderosa para ma
 - RTK Query: Biblioteca para manejar la obtención de datos y el almacenamiento en caché, incluida en RTK.
 
 Cada una de estas herramientas se construye sobre la anterior, proporcionando niveles adicionales de abstracción y funcionalidad para facilitar el desarrollo con Redux y React.
-
-
-
-
-
-
-
-
-
-
 
 
 ---
