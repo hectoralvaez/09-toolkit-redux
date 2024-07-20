@@ -55,6 +55,15 @@ git push -u origin main`
 yarn add react-router-dom@6
 ```
 
+## ARRANCAR 'REACT REDUX' Y 'REDUX TOOLKIT (RTK)'
+
+Para hacerlo con yarn (NO npm) y trabajando con Vite (NO Create React App) 
+```
+yarn add @reduxjs/toolkit react-redux
+```
+---
+
+
 > ### NOTA IMPORTANTE:
 > Hay que especificar que la versión que vamos a instalar es la 6 (@6) ya que hay muchas diferencias importantes respecto a la 5.
 
@@ -91,6 +100,13 @@ En terminal: `yarn add --dev @testing-library/react @types/jest jest-environment
 - [React Redux](https://react-redux.js.org): Conector oficial entre Redux y React.
 - [Redux Toolkit (RTK)](https://redux-toolkit.js.org): Conjunto de herramientas para simplificar el uso de Redux.
 - [RTK Query](https://redux-toolkit.js.org/rtk-query/overview): Biblioteca para manejar la obtención de datos y el almacenamiento en caché, incluida en RTK.
+
+- [Redux DevTools](https://chromewebstore.google.com/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?pli=1): Extensión de Google Chrome que nos permite depurar los cambios de estado de la aplicación.
+
+La extensión proporciona potenciadores para su flujo de trabajo de desarrollo de Redux. Además de Redux, se puede utilizar con cualquier otra arquitectura que maneje el estado.
+
+Este es un proyecto de código abierto. Consulte el repositorio oficial para obtener más detalles: https://github.com/reduxjs/redux-devtools.
+
 
 - PETICIONES HTTP 
     - [Fetch](https://developer.mozilla.org/es/docs/Web/API/Fetch_API/Using_Fetch) Viene en JavaScript
