@@ -99,6 +99,8 @@ En terminal: `yarn add --dev @testing-library/react @types/jest jest-environment
 - [Redux](https://redux.js.org): Biblioteca para el manejo del estado con un almacenamiento centralizado.
 - [React Redux](https://react-redux.js.org): Conector oficial entre Redux y React.
 - [Redux Toolkit (RTK)](https://redux-toolkit.js.org): Conjunto de herramientas para simplificar el uso de Redux.
+    - [Redux Toolkit Quick Start](https://redux-toolkit.js.org/tutorials/quick-start): Guía de inicio rápido.
+
 - [RTK Query](https://redux-toolkit.js.org/rtk-query/overview): Biblioteca para manejar la obtención de datos y el almacenamiento en caché, incluida en RTK.
 
 - [Redux DevTools](https://chromewebstore.google.com/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?pli=1): Extensión de Google Chrome que nos permite depurar los cambios de estado de la aplicación.
@@ -315,8 +317,21 @@ throw new Error ('action.type "ABC" todavía no se ha definido');
 ```
 
 ---
+# 🏁 FIN SECCIÓN 18: Redux - ¿Qué es y conceptos? + React Redux
 
-# ⚙️ 259. Inicio de proyecto - Redux-Tool
+## ⚙️ 260. ConfigureStore y Slices
+
+En esta clase configuramos el `store` (nuestra "fuente de la verdad") con `ConfigureStore`.
+
+En este `store` tendremos la infomración del estado de cualquier componente, por ejemplo, si el menú está abierto, si el usuario está autenticado, etc y poder compartir esa información con otros componentes.
+
+Usar `Redux`, que nos permite trabajar con `store`, no significa que TODOS los estados tengan que pasar por este `store`, podemos seguir usando estados locales con `useState` o `UseReducer`.
+
+Aquí vemos la ventaja de usar Redux Toolkit en lugar de construir nuestros propios estados como hacíamos en la clase "🪝 141. Idea general de un reducer - Vía código", donde teíamos que definir el state, action.payload, dispatch etc...
+
+---
+
+## ⚙️ 259. Inicio de proyecto - Redux-Tool
 
 Instalamos 'React Redux' y 'Redux Toolkit (RTK)'
 
@@ -326,11 +341,11 @@ yarn add @reduxjs/toolkit react-redux
 ```
 ---
 
-# ⚙️ 258. Redux, React Redux y RTK Query (by ChatGpt)
+## ⚙️ 258. Redux, React Redux y RTK Query (by ChatGpt)
 
 Entender la diferencia entre Redux, React Redux, React Toolkit y RTK Query puede ayudarte a escoger la herramienta adecuada para manejar el estado en tus aplicaciones de React. Aquí tienes una descripción de cada uno:
 
-## 1. Redux
+### 1. Redux
 
 Redux es una biblioteca para manejar el estado de la aplicación. Está basada en el concepto de un almacenamiento centralizado donde todo el estado de la aplicación es almacenado en un único objeto. Los principales conceptos de Redux son:
 
@@ -341,7 +356,7 @@ Redux es una biblioteca para manejar el estado de la aplicación. Está basada e
 
 Redux es independiente de cualquier librería de UI, incluyendo React.
 
-## 2. React Redux
+### 2. React Redux
 
 React Redux es la biblioteca oficial para conectar Redux con React. Proporciona un conjunto de componentes y funciones que facilitan la integración de Redux en una aplicación React:
 
@@ -349,7 +364,7 @@ React Redux es la biblioteca oficial para conectar Redux con React. Proporciona 
 - connect: Una función de orden superior que conecta un componente de React a la store de Redux.
 - Hooks: Como `useSelector` y `useDispatch`, que permiten acceder y manipular el estado de Redux de una manera más sencilla dentro de componentes funcionales.
 
-## 3. Redux Toolkit (RTK)
+### 3. Redux Toolkit (RTK)
 Redux Toolkit (RTK) es un conjunto de herramientas oficiales para simplificar el uso de Redux. Está diseñado para hacer que Redux sea más fácil de usar y reduce la cantidad de código que los desarrolladores necesitan escribir. RTK incluye:
 
 - configureStore: Una función para configurar el store con buenas prácticas y configuraciones predeterminadas.
@@ -359,7 +374,7 @@ Redux Toolkit (RTK) es un conjunto de herramientas oficiales para simplificar el
 
 RTK es una forma recomendada de usar Redux en nuevas aplicaciones, ya que simplifica muchas de las tareas comunes.
 
-## 4. RTK Query
+### 4. RTK Query
 RTK Query es una biblioteca incluida en Redux Toolkit que facilita la obtención de datos y el almacenamiento en caché de esos datos. Proporciona herramientas para hacer peticiones a API de manera eficiente y manejar el estado del lado del cliente relacionado con la obtención de datos. Sus principales características son:
 
 - createApi: Una función para definir un servicio de API.
@@ -369,7 +384,7 @@ RTK Query es una biblioteca incluida en Redux Toolkit que facilita la obtención
 
 RTK Query se integra perfectamente con Redux y es una solución poderosa para manejar datos asíncronos en aplicaciones React.
 
-## Resumen
+### Resumen
 - Redux: Biblioteca para el manejo del estado con un almacenamiento centralizado.
 - React Redux: Conector oficial entre Redux y React.
 - Redux Toolkit (RTK): Conjunto de herramientas para simplificar el uso de Redux.
@@ -380,13 +395,13 @@ Cada una de estas herramientas se construye sobre la anterior, proporcionando ni
 
 ---
 
-# ⚙️ 257. Explicación visual del patrón Redux
+## ⚙️ 257. Explicación visual del patrón Redux
 
-## ¿Qué es Redux? (by ChatGpt)
+### ¿Qué es Redux? (by ChatGpt)
 
 Redux es una librería de JavaScript que se utiliza para manejar el estado de aplicaciones. Fue creada por Dan Abramov y Andrew Clark en 2015 y se basa en el concepto de un almacén centralizado para el estado de toda la aplicación, lo que facilita la gestión del estado de una manera predecible y estructurada.
 
-### Principios Clave de Redux
+#### Principios Clave de Redux
 
 1. **Un único almacén de estado (single source of truth)**:
    Todo el estado de la aplicación se almacena en un solo objeto JavaScript, conocido como el "store". Esto facilita el seguimiento de los cambios en el estado y la depuración de la aplicación.
@@ -397,17 +412,17 @@ Redux es una librería de JavaScript que se utiliza para manejar el estado de ap
 3. **Cambios en el estado utilizando funciones puras**:
    Para especificar cómo cambia el estado en respuesta a una acción, se utilizan reductores (reducers), que son funciones puras que toman el estado anterior y una acción y devuelven el nuevo estado.
 
-### Componentes Principales de Redux
+#### Componentes Principales de Redux
 
 - **Store**: El almacén que contiene el estado de la aplicación.
 - **Actions**: Objetos que describen un cambio en el estado. Deben tener al menos una propiedad `type` que indica el tipo de acción a realizar.
 - **Reducers**: Funciones puras que toman el estado actual y una acción y devuelven un nuevo estado.
 - **Middleware**: Funciones que se ejecutan entre el envío de una acción y el momento en que esta llega al reductor, permitiendo manipular o inspeccionar acciones y el estado.
 
-### Uso de Redux
+#### Uso de Redux
 Redux se puede usar con cualquier librería de interfaz de usuario, pero es comúnmente utilizado con React a través de la integración con `react-redux`. Esto permite que los componentes de React se conecten al estado de Redux y reciban actualizaciones automáticas cuando el estado cambia.
 
-## Ejemplo de Uso
+### Ejemplo de Uso
 
 1. **Definir acciones**:
    ```javascript
@@ -441,9 +456,9 @@ Redux se puede usar con cualquier librería de interfaz de usuario, pero es com�
 
 Redux es una herramienta poderosa para aplicaciones que requieren un manejo complejo del estado, como aplicaciones de una sola página (SPA) y aplicaciones que manejan muchos datos interactivos.
 
-# ⚙️ 256. Temas puntuales de la sección
+## ⚙️ 256. Temas puntuales de la sección
 
-## ¿Qué veremos en esta sección?
+### ¿Qué veremos en esta sección?
 
 - Redux
 - Store
@@ -466,7 +481,7 @@ Es una sección sumamente pequeña, pero quiero darles una explicación teórica
 
 ---
 
-# 🖌️ 253. Boton Flotante
+## 🖌️ 253. Boton Flotante
 
 Añadimos el botón flotante con `IconButton` de MUI:
 
@@ -496,7 +511,7 @@ Marcamos el elemento anidado entre `''`, añadimos dos puntos `:` y a continuaci
 
 ---
 
-# 🖌️ 252. ImageList - Galería de imágenes
+## 🖌️ 252. ImageList - Galería de imágenes
 
 Añadimos la galería de [imágenes de MUI](https://mui.com/material-ui/react-image-list/).
 
@@ -515,7 +530,7 @@ export const ImageGallery = () => {
 
 ---
 
-# 🖌️ 251. NoteView
+## 🖌️ 251. NoteView
 
 Preparamos otra vista, la `NoteView`, que nos permitirá añadir nuevas notas.
 
@@ -523,7 +538,7 @@ Así que en `JournalPage` llamamos a la vista `NoteView` en lugar de la `Nothing
 
 ---
 
-# 🖌️ 250. NothingSelectedView - No hay nada seleccionado
+## 🖌️ 250. NothingSelectedView - No hay nada seleccionado
 
 Añadimos la carpeta "views", que es el CONTENIDO que carga DENTRO de la página.
 
@@ -533,7 +548,7 @@ Ahora mismo tenemos esta jerarquía:
 2. Page
 3. View
 
-## 1. Layout (JournalLayout)
+### 1. Layout (JournalLayout)
 Estructura general que contiene todo y donde se llama al `children` que será la página:
 ```javascript
 <Box sx={{ display: "flex" }}>
@@ -547,7 +562,7 @@ Estructura general que contiene todo y donde se llama al `children` que será la
     </Box>
 </Box>
 ```
-## 2. Page (JournalPage)
+### 2. Page (JournalPage)
 En la página llamamos el layout y dentro ponemos el `children` que es el propio contenido de la página, en este caso `NothingSelectedView`.
 
 ```javascript
@@ -556,7 +571,7 @@ En la página llamamos el layout y dentro ponemos el `children` que es el propio
 </JournalLayout>
 ```
 
-## 3. View (NothingSelectedView)
+### 3. View (NothingSelectedView)
 Aquí generamos el contenido FINAL que aparecerá en el espacio reservado para el contenido principal de la página
 ```javascript
 
@@ -581,7 +596,7 @@ Aquí generamos el contenido FINAL que aparecerá en el espacio reservado para e
 
 ---
 
-# 🖌️ 249. SideBar
+## 🖌️ 249. SideBar
 
 Preparamos el SideBar con las listas que proporciona MUI dentro del `Drawer`:
 
@@ -594,7 +609,7 @@ Preparamos el SideBar con las listas que proporciona MUI dentro del `Drawer`:
 En este ejemplo, Fernando añade un componente `ToolBar` para salvar el espacio que tiene que dejar el texto que hay en la página. No me parece muy limpio, a no ser que más adelante se le dé una utilidad a ese `ToolBar`
 ---
 
-# 🖌️ 248. NavBar
+## 🖌️ 248. NavBar
 
 Creamos NavBar en la carpeta "components", pero se podría haber creado tambien en en la carpeta "ui", ya que es algo que va a ser estandard en toda la aplicación cuando estás autenticado.
 
@@ -622,7 +637,7 @@ sx={{ mr: 2, display: {sm: 'none'}}}
 
 ---
 
-# 🖌️ 247. JournalLayout y JournalPage
+## 🖌️ 247. JournalLayout y JournalPage
 
 En esta clase creamos el layout de Journal `JournalLayout.jsx` y la aplicamos a `JournalPage.jsx`.
 
@@ -630,7 +645,7 @@ Queda pendiente definir Navbar, Sidebar y Toolbar.
 
 ---
 
-# 🖌️ 246. RegisterPage - Diseño
+## 🖌️ 246. RegisterPage - Diseño
 
 En esta clase simplemente se ha copiado todo el contenido que teníamos en `LoginPage.jsx` y se ha pegado en `RegisterPage.jsx`.
 
@@ -638,7 +653,7 @@ Una vez copiado lo único que se ha tenido que hacer es cambiar el nombre del co
 
 ---
 
-# 🖌️ 245. AuthLayout
+## 🖌️ 245. AuthLayout
 
 Creamos el `AuthLayout.jsx` con la estructura de lo que se repetirá en las páginas de "Login" y "Register" con el `children` que será el contenido que cargue dentro del layout y el título que llevará en este caso el formulario:
 
@@ -665,7 +680,7 @@ podremos llamar directamente al layout con la variable title y automáticamente,
 </AuthLayout>
 ```
 
-## Otras cosas a tener en cuenta de esta clase:
+### Otras cosas a tener en cuenta de esta clase:
 Para añadir estilos según la media query (en la declaración del `<Grid>`, en este caso) marcamos el ancho que va a tener el elemento siempre teniendo en cuenta que la filosofía es Mobile First, por lo tanto, le decimos que hasta sm, el ancho sea "450px":
 
 ```javascript
@@ -684,7 +699,7 @@ Para añadir estilos según la media query (en la declaración del `<Grid>`, en 
 
 ---
 
-# 🖌️ 244. LoginPage - Diseño sin Layout - Segunda Parte
+## 🖌️ 244. LoginPage - Diseño sin Layout - Segunda Parte
 
 Para usar los links, tenemos que distingir entre el `<Link>` de "MUI" y el de `react-router-dom`
 
@@ -708,7 +723,7 @@ A la hora de construir el `<Link>`, podemos usar por defecto el de MUI, pero asi
 
 ---
 
-# 🖌️ 243. LoginPage - Diseño sin Layout
+## 🖌️ 243. LoginPage - Diseño sin Layout
 
 En este ejemplo se va a maquetar la página de "login" como pàgina independiente sin tener en cuenta que se podrían usar "layouts" que reutilicen estructuras iguales.
 
@@ -717,7 +732,7 @@ Trabajaremos con [`Grid`](https://mui.com/material-ui/react-grid2/) de MUI
 
 ---
 
-# 🖌️ 242. Configuración de MUI con Vite
+## 🖌️ 242. Configuración de MUI con Vite
 
 
 > *CssBaseline:*
@@ -726,7 +741,7 @@ Trabajaremos con [`Grid`](https://mui.com/material-ui/react-grid2/) de MUI
 
 Del ejemplo concreto que nos facilita MUI, para trabajar con [Vite.js](https://github.com/mui/material-ui/tree/next/examples/material-ui-vite), ellos lo aplican directamente en el `main.jsx`, pero nosotros crearemos el archivo `AppTheme.jsx` dentro de la carpeta "theme".
 
-## Su ejemplo:
+### Su ejemplo:
 ```javascript
 <ThemeProvider theme={theme}>
     {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
@@ -735,8 +750,8 @@ Del ejemplo concreto que nos facilita MUI, para trabajar con [Vite.js](https://g
 </ThemeProvider>
 ```
 
-## Nuestra implementación
-### Creación de `purpleTheme`
+### Nuestra implementación
+#### Creación de `purpleTheme`
 Creamos nuestro template en la raiz de "theme" (también creamos el archivo de barril con el tema y el AppTheme)
 
 Para crearlo usamos el `createTheme` de MUI:
@@ -759,7 +774,7 @@ export const purpleTheme = createTheme({
   });
 ```
 
-### Implemantación en `AppTheme.jsx`
+#### Implemantación en `AppTheme.jsx`
 Se implementa como un Higher-Order Component aplicando el tema `purpleTheme` creado en la misma carpeta:
 ```javascript
 export const AppTheme = ({ children }) => {
@@ -772,7 +787,7 @@ export const AppTheme = ({ children }) => {
     );
 };
 ```
-### Aplicación del HOC `AppTheme.jsx` en `JournalApp.jsx`
+#### Aplicación del HOC `AppTheme.jsx` en `JournalApp.jsx`
 Para aplicarlo finalmente en `JournalApp.jsx` como un Higher-Order Component
 ```javascript
 <AppTheme>
@@ -780,12 +795,12 @@ Para aplicarlo finalmente en `JournalApp.jsx` como un Higher-Order Component
 </AppTheme>
 ```
 
-### Otras aplicaciones de MUI (Typography)
+#### Otras aplicaciones de MUI (Typography)
 Se ha aplicado `Typography` de MUI a `JournalPage.jsx` con la `variant="h1"` para que se comporte como un `H1`
 
 ---
 
-# 🖌️ 241. Instalación de Material UI
+## 🖌️ 241. Instalación de Material UI
 
 Hemos instalado:
 > 1. Material UI
@@ -793,12 +808,12 @@ Hemos instalado:
 > 3. Iconos de Material UI
 
 
-## 1. Para hacer la instalación por defecto con `emotion`:
+### 1. Para hacer la instalación por defecto con `emotion`:
 ```
 yarn add @mui/material @emotion/react @emotion/styled
 ```
 
-## 2. Instalación de Roboto de google fonts, en <head> con los preloads:
+### 2. Instalación de Roboto de google fonts, en <head> con los preloads:
 
 ```
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -810,7 +825,7 @@ yarn add @mui/material @emotion/react @emotion/styled
 ```
 
 
-## 3. Instalacion de iconos SVG, NO fuente:
+### 3. Instalacion de iconos SVG, NO fuente:
 ```
 yarn add @mui/icons-material
 ```
@@ -818,7 +833,7 @@ yarn add @mui/icons-material
 
 ---
 
-# 🖌️ 240. Nota importante
+## 🖌️ 240. Nota importante
 
 En la próxima clase instalaremos los íconos de material, pero al hacerlo, esto incrementa el bundle size y el tiempo de transpilación, tengan presente esto porque hemos recibido bastantes preguntas relacionadas al tema.
 
@@ -827,7 +842,7 @@ Más información y posibles acciones aquí: [mui.com - minimizing-bundle-size](
 
 ---
 
-# 🖌️ 239. Configuración de Rutas principales y secundarias
+## 🖌️ 239. Configuración de Rutas principales y secundarias
 
 En esta clse hemos instalado React Router DOM para poder trabajar las rutas.
 
@@ -836,7 +851,7 @@ No vamos a usar rutas públicas y privadas.
 Vamos a configurar el `AppRouter.jsx` de la carpeta "router" de manera que apunte (según la url) a las rutas establecidas en la carpeta "routes" dentro de las respectivas carpetas "auth" y "journal".
 
 
-## AUTH
+### AUTH
 En la carpeta `auth/pages` creamos las páginas `LoginPage.jsx` y `RegisterPage.jsx` (además, creamos el archivo de barril `index.js` con las dos páginas)
 ```
 📁 auth
@@ -863,7 +878,7 @@ En `AuthRoutes.jsx` redireccionaremos según la url a cada página y en caso de 
 </Routes>
 ```
 
-## JOURNAL
+### JOURNAL
 
 En la carpeta `journal/pages` creamos la página `JournalPage.jsx`.
 
@@ -890,7 +905,7 @@ En `JournalRoutes.jsx` si está en la raiz, te lleva a `JournalPage`, si no, nav
 </Routes>
 ```
 
-## ROUTER
+### ROUTER
 
 En la carpeta `router` creamos `AppRouter.jsx`.
 ```
@@ -913,7 +928,7 @@ En `AppRouter.jsx` si está en `/auth/*` te lleva a las rutas de la carpeta "aut
 ```
 
 
-## MAIN.JSX
+### MAIN.JSX
 
 Para poder utilizar las rutas, la llamada al componente principal tiene que estar dentro de `BrowserRouter`, que como hemos visto anteriormente es un Componente de Nivel Suprerior (Higher-Order Component "HOC").
 
@@ -931,7 +946,7 @@ Este `BrowserRouter` se podría haber puesto en `JournalApp.jsx` y funciona perf
 
 ---
 
-# 🖌️ 238. Inicio de proyecto - JournalApp
+## 🖌️ 238. Inicio de proyecto - JournalApp
 
 Arrancamos el proyecto eliminando los archivos que no vamos a usar y creamos los nuevos. 
 
@@ -943,9 +958,9 @@ También creamos las nuevas carpetas que necesitaremos:
 
 ---
 
-# 🖌️ 236. Temas puntuales de la sección
+## 🖌️ 236. Temas puntuales de la sección
 
-## ¿Qué veremos en esta sección?
+### ¿Qué veremos en esta sección?
 
 - Material UI
 - Diferentes componentes de material
@@ -961,13 +976,13 @@ También creamos las nuevas carpetas que necesitaremos:
 # 🏁 FIN SECCIÓN 16: Pruebas de nuestra aplicación de Heroes
 ---
 
-# 🔬 234. Resumen de las pruebas realizadas
+## 🔬 234. Resumen de las pruebas realizadas
 
 Propuestas de test a realizar en todas las pàginas del proyecto.
 
 ---
 
-# 🔬 233. Tarea - requireActual
+## 🔬 233. Tarea - requireActual
 
 En el primer test comprobamos que en caso de no encontrar un heroe (batman123) aparece el mensaje de error, es decir, que el `alert-danger` deja de tener el `display: none`.
 
@@ -1019,7 +1034,7 @@ const inputValue = 'superman';
 
 ---
 
-# 🔬 232. Pruebas con los queryParameters
+## 🔬 232. Pruebas con los queryParameters
 
 En este test hemos forzado el `initialEntries` del `MemoryRouter` con la query ('q') igual a "batman".
 
@@ -1040,7 +1055,7 @@ Snapshot Summary
 
 ---
 
-# 🔬 231. Pruebas en el SearchPage
+## 🔬 231. Pruebas en el SearchPage
 
 En este test comprobamos que funciona el componente <SearchPage>
 
@@ -1064,13 +1079,13 @@ expect( container ).toMatchSnapshot()
 
 ---
 
-# 🔬 230. Solución de la tarea
+## 🔬 230. Solución de la tarea
 
 Mucha info nueva, complicado, repasar.
 
 ---
 
-# 🔬 229. Pruebas en el NavBar 
+## 🔬 229. Pruebas en el NavBar 
 
 Para probar el NavBar, tendremos que hacer pruebas en:
 - HeroesRoutes.jsx
@@ -1087,7 +1102,7 @@ Para testear el `<NavBar>` tendremos que comporbar:
 
 ---
 
-# 🔬 228. Pruebas en el AppRouter
+## 🔬 228. Pruebas en el AppRouter
 
 En este test comprobamos que funciona el componente <AppRouter>, si va a la ruta pública o privada según si está o no logado.
 
@@ -1118,7 +1133,7 @@ expect( screen.getAllByText('Marvel').length).toBeGreaterThanOrEqual(1);
 
 ---
 
-# 🔬 227. Pruebas en el PrivateRoute
+## 🔬 227. Pruebas en el PrivateRoute
 
 En este test volvemos a comprobar que accedemos a la página que nos redirige cuando hacemos login, como en el anterior ejercicio, pero además, vamos a testear no solo que el `localStorage` haya sido llamado, si no que además vamos a asegurarnos que se llama con el valor que le facilitamos.
 
@@ -1139,7 +1154,7 @@ Para eso, anteriormente, tenemos que haber añadido al `MemoryRouter` la ruta de
 
 ---
 
-# 🔬 226. Pruebas en el PublicRoute - Parte 2
+## 🔬 226. Pruebas en el PublicRoute - Parte 2
 
 En este test comprobamos que accedemos a la página que nos redirige cuando hacemos login.
 
@@ -1178,7 +1193,7 @@ const contextValue = {
 
 ---
 
-# 🔬 225. Pruebas en el PublicRoute
+## 🔬 225. Pruebas en el PublicRoute
 
 Para renderizar el PublicRoute, necesitamos hacerlo dentro del "context" <AuthorContext>
 
@@ -1190,7 +1205,7 @@ En nuestro test, el children, o sea, el elemento que tenemos dentro del `<Public
 
 ---
 
-# 🔬 224. Pruebas sobre los Types
+## 🔬 224. Pruebas sobre los Types
 
 Esta es una prueba muy fácil pero está bien hacerla para controlar los "Types" que estamos usando en el reducer.
 
@@ -1202,7 +1217,7 @@ Lo único que hacemos es importar los types al test y confirmar que la constante
 
 ---
 
-# 🔬 223. Pruebas en el authReducer
+## 🔬 223. Pruebas en el authReducer
 
 ✅ Debe retornar el estado por defecto.
 > Confirmamos que llamando a `authReducer` con el estado por defecto `logged: false` y sin pasar ninguna acción; el estado que devuelve (`expect`) es igual (`toEqual`) a `logged: false`.
@@ -1216,12 +1231,12 @@ Lo único que hacemos es importar los types al test y confirmar que la constante
 
 ---
 
-# 🔬 222. Inicio de la sección - Pruebas en HeroApp
+## 🔬 222. Inicio de la sección - Pruebas en HeroApp
 Creamos toda la configuración del entorni de pruebas siguiendo los pasos "Guia de instalación y configuracion de Jest + React Testing Library"
 
 ---
 
-# 🔬 221. Temas puntuales de la sección
+## 🔬 221. Temas puntuales de la sección
 
 ## ¿Qué veremos en esta sección?
 
@@ -4363,7 +4378,7 @@ Adicionalmente estaremos dejando las bases para lo que será una sección de pru
 # 🏁 FIN SECCIÓN 8: Testing - Probando la aplicación de GifExpert
 
 
-# 🔬 110. Pruebas de tarea (sobre GifExpert)
+## 🔬 110. Pruebas de tarea (sobre GifExpert)
 
 ### TODO: Hacer las pruebas, por ejemplo:  
 ✅ Tomar un snapshot  
@@ -4375,7 +4390,7 @@ Adicionalmente estaremos dejando las bases para lo que será una sección de pru
 
 ---
 
-# 🔬 109. Pruebas sobre customHooks
+## 🔬 109. Pruebas sobre customHooks
 En la versión 16 y 17 de React se utilizaba el [React Hooks Testing Library](https://react-hooks-testing-library.com).  
 
 En la versión 18 no se recomienda utilizarlo, ya no funciona, pero se ha fusionado con React Testing Library (RTL), por lo tanto, los hooks están integrados en React Testing Library (RTL).  
@@ -4428,7 +4443,7 @@ El segundo test, bastante denso, con un async/await e importando `waitFor`de RTL
 <br />
 
 ---
-# 🔬 108. Hacer un mock completo de un Custom Hook
+## 🔬 108. Hacer un mock completo de un Custom Hook
 Hace un Mock completo de este path "../../src/hooks/useFetchGifs":  
 ```javascript
 jest.mock('../../src/hooks/useFetchGifs');  
@@ -4447,7 +4462,7 @@ useFetchGifs.mockReturnValue({
 <br />
 
 ---
-# 🔬 107. Pruebas del componente GifGrid - Mock customHook
+## 🔬 107. Pruebas del componente GifGrid - Mock customHook
 
 Este component trabaja con un Custom Hook, lo que hace un poco más complicado el testeo.  
 
@@ -4459,7 +4474,7 @@ Tienen que ser tests unitarios, no es obligatorio comporbar todo lo que hay dent
 
 ---
 
-# 🔬 106. Jest Functions
+## 🔬 106. Jest Functions
 Tenemos que evaluar el comportamiento de una función, en nuestro caso, que onNewCategory sea llamada con el valor que tenía la caja de texto.  
 
 onNewCategory, es una función que se está enviando como argumento a "AddCategory" y además esa función es obligatoria, definida con propTypes como .isRequired  
@@ -4481,7 +4496,7 @@ const onNewCategory = jest.fn();
 ---
 
 
-# 🔬 105. Simular un submit del formulario
+## 🔬 105. Simular un submit del formulario
 
 Tenemos que hacer dos pruebas
 1. El submit del form
@@ -4495,7 +4510,7 @@ React testing Library no detecta el "form" si no le añadimos el `aria-label="fo
 
 ---
 
-# 🔬 103. Pruebas en el helper getGifs
+## 🔬 103. Pruebas en el helper getGifs
 
 No nos vamos a detener a analizar cada parte del código de la función.  
 Sí analizaremos el resultado de la función, pasando una categoría, tiene que devolver una respuesta concreta, pero no entramos a testear el `fetch`ni nada en concreto.
@@ -4527,7 +4542,7 @@ expect( gifs[0] ).toEqual({
 
 ---
 
-# 🔬 102. Pruebas del componente - GifGridItem
+## 🔬 102. Pruebas del componente - GifGridItem
 
 `screen.debug();`  
 Con screen.debug en el test, imprimimos la estructura completa de lo que estamos testeando, lo que permite ver cada elemento html  
@@ -4553,7 +4568,7 @@ expect( alt ).toBe( title );    // expect(screen.getByRole('img').alt).toBe( tit
 
 ---
 
-# 🔬 100. Implementando PropTypes
+## 🔬 100. Implementando PropTypes
 
 Instalar las PropTypes (en termminal):  
 `yarn add prop-types`
@@ -4612,7 +4627,7 @@ Esta prueba no asegura que la imagen o el título estén correctamente colocados
 
 ---
 
-# 🔬 99. Configurar el ambiente de pruebas
+## 🔬 99. Configurar el ambiente de pruebas
 Seguir los pasos indicados en el documento `vite-testing-config.md`.
 
 
@@ -4665,7 +4680,7 @@ import 'whatwg-fetch'; // <-- yarn add whatwg-fetch
 
 
 
-# 🔬 98. Temas puntuales de la sección
+## 🔬 98. Temas puntuales de la sección
 
 ## ¿Qué veremos en esta sección?
 
@@ -4684,7 +4699,7 @@ En esta sección seguiremos expandiendo todo lo que habíamos visto anteriorment
 
 ---
 
-# 🔬 INICIO SECCIÓN 8: Testing - Probando la aplicación de GifExpert
+## 🔬 INICIO SECCIÓN 8: Testing - Probando la aplicación de GifExpert
 
 
 ---
