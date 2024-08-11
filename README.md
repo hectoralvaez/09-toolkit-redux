@@ -319,6 +319,61 @@ throw new Error ('action.type "ABC" todavía no se ha definido');
 ---
 # 🏁 FIN SECCIÓN 18: Redux - ¿Qué es y conceptos? + React Redux
 
+## ⚙️ 263. Snippet y Gists de Slice
+Para crear un snippet en Visual Studio Code:
+
+1. Command + Shift + P
+2. Buscamos "snippet"
+3. Seleccionamos el lenguaje (JavaScript)
+4. Nos abre un javascript.json con el ejemplo de snippet que nos servirá para preparar el nuestro:
+
+```
+	"Crear slice de Redux": {
+		"prefix": "redux-slice",
+		"body": [
+            "import { createSlice } from '@reduxjs/toolkit';",
+            "",
+            "export const ${TM_FILENAME_BASE} = createSlice({",
+            "    name: 'name',",
+            "    initialState: {",
+            "        counter: 10",
+            "    },",
+            "    reducers: {",
+            "        increment: (state, /* action */ ) => {",
+            "            state.counter += 1;",
+            "        },",
+            "    }",
+            "});",
+            "",
+            "",
+            "// Action creators are generated for each case reducer function",
+            "export const { increment } = ${TM_FILENAME_BASE}.actions;"
+            
+
+		],
+		"description": "Crear slice de Redux"
+	}
+```
+
+5. Para usar este snippet, tendremos que escribir "redux-slice".
+
+### IMPORTANTE: No se pueden usar tabulaciones en el código que introducimos en el .json de los snippets, tienen que ser espacios.
+
+> Nota: he hecho una mejora en el nippet, cambiando el `${1:template}Slice` por `${TM_FILENAME_BASE}` de manera que aplique de forma automática el nombre del archivo creado:
+
+> OLD:
+>```
+>`export const ${1:template}Slice = createSlice({`
+>```
+
+> NEW:
+>```
+>`export const ${TM_FILENAME_BASE} = createSlice({`
+>```
+
+
+
+
 ## ⚙️ 262. Tarea - decrement e incrementBy
 Creamos los dos botones, 'decrementar' e 'incrementar con 2'.
 
