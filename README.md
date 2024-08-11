@@ -355,6 +355,55 @@ throw new Error ('action.type "ABC" todavía no se ha definido');
 ---
 # 🏁 FIN SECCIÓN 18: Redux - ¿Qué es y conceptos? + React Redux
 
+---
+
+## ⚙️ 264. pokemonSlice
+Creamos dentro de nuestro `store` el `pokemonSlice.js` que nos permitirá controlar las acciones y el estado de todo lo referente a Pokemons.
+
+En nuestro `pokemonSlice.js` definimos el "nombre", el "estado inicial" y los "reducers":
+
+Nombre:
+```javascript
+name: 'pokemon',
+```
+Estado inicial:
+```javascript
+initialState: {
+    page: 0,
+    pokemons: [],
+    isLoading: false,
+},
+```
+
+Reducers:
+```javascript
+reducers: {
+    startLoadingPokemons: (state, /* action */ ) => {
+        state.isLoading = true;
+    },
+    setPokemons: ( state, actions ) => {
+        console.log(actions);
+    }
+}
+```
+
+Añadimos a nuestro `store.js` el nuevo 'slice'
+
+```javascript
+import { configureStore } from '@reduxjs/toolkit'
+import { counterSlice } from './slices/counter'
+import { pokemonSlice } from './slices/pokemon' // nuevo slice
+
+export const store = configureStore({
+  reducer: {
+    counter: counterSlice.reducer,
+    pokemon: pokemonSlice.reducer, //llamada al nuevo slice
+  },
+})
+```
+
+---
+
 ## ⚙️ 263. Snippet y Gists de Slice
 Para crear un snippet en Visual Studio Code:
 
@@ -408,18 +457,22 @@ Para crear un snippet en Visual Studio Code:
 >```
 
 
-
+---
 
 ## ⚙️ 262. Tarea - decrement e incrementBy
 Creamos los dos botones, 'decrementar' e 'incrementar con 2'.
 
 Para la función de `incrementBy`, necesitaremos pasar el payload, que és informaciín que recibe el recucervia `action.payload`.
 
+---
+
 ## ⚙️ 261. Usar valores del store y despachar acciones
 En esta clase usamos dos hooks (`useSelector` y `useDispatch`) de `react-redux`.
 
 `useSelector` nos servirá para seleccionar cualquier cosa que esté en nuestro `store`.
 `useDispatch` nos dará acceso a las acciones que despacha el `store`.
+
+---
 
 ## ⚙️ 260. ConfigureStore y Slices
 
@@ -557,6 +610,8 @@ Redux se puede usar con cualquier librería de interfaz de usuario, pero es com�
    ```
 
 Redux es una herramienta poderosa para aplicaciones que requieren un manejo complejo del estado, como aplicaciones de una sola página (SPA) y aplicaciones que manejan muchos datos interactivos.
+
+---
 
 ## ⚙️ 256. Temas puntuales de la sección
 
