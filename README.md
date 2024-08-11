@@ -70,7 +70,7 @@ yarn add @reduxjs/toolkit react-redux
 
 ---
 
-### LINKS DE INTERÉS:  
+# LINKS DE INTERÉS:  
 - [React: Documentación y recursos relacionados](https://es.reactjs.org/docs/getting-started.html)  
 - [React: Aprende React](https://es.react.dev/learn): Documentación de React. Introducción al 80% de los conceptos de React de uso diario
 - [React: Presentando Hooks](https://es.reactjs.org/docs/hooks-intro.html#motivation): Los _Hooks_ son una nueva incorporación en React 16.8. Te permiten usar estado y otras características de React sin escribir una clase.
@@ -115,7 +115,7 @@ Este es un proyecto de código abierto. Consulte el repositorio oficial para obt
     - [Axios](https://axios-http.com) Fernando lo prefiere a Fetch
 ---
 
-## TESTS
+# TESTS
 > NOTA:  
 > Siempre falta tiempo para hacer tests, por lo tanto, se recomienda, como mínimo, hacer el test de la ruta crítica, es decir, la parte principal de la app. Si fuera una tienda, la ruta crítica es el proceso de compra (añadir productos al carito, el cesto de la compra, etc...)  
 
@@ -219,7 +219,7 @@ todoReducer
 ```
 
 
-## Extra info Jest
+### Extra info Jest
 [expect()](https://jestjs.io/docs/expect)
 [mockFn.mockReturnValue(value)](https://jestjs.io/docs/mock-function-api#mockfnmockreturnvaluevalue)
 [expect().toHaveBeenCalled()](https://jestjs.io/docs/expect#tohavebeencalled)
@@ -233,8 +233,8 @@ El objeto `screen` de React Testing Library (RTL) proporciona métodos para cons
 
 ---
 
-## Material UI (MUI):  
-### Instalación de Material UI
+# Material UI (MUI):  
+## Instalación de Material UI
 
 Material UI utiliza [Emotion](https://emotion.sh) como su motor de estilo predeterminado. 
 
@@ -265,7 +265,7 @@ Actualmente estamos usando la versión 18.3.1
 ```
 ---
 
-### Instalación de Roboto (de google fonts), la fuente que usa MUI
+## Instalación de Roboto (de google fonts), la fuente que usa MUI
 
 En `<head>` del `index.html` cargamos la fuente:
 ```
@@ -277,7 +277,7 @@ En `<head>` del `index.html` cargamos la fuente:
 />
 ```
 
-### Instalación iconos de Material UI
+## Instalación iconos de Material UI
 Para utilizar el componente de icono de fuente o los iconos de material SVG prediseñados, primero debe instalar la fuente de iconos de material. Puede hacerlo con npm o con la CDN de Google Web Fonts.
 
 Se recomienda hacer la instalación de los SVG y NO la fuente, ya que la fuente carga todos los iconos y con SVG vas haciendo `import` solo de los que necesitas:
@@ -285,7 +285,7 @@ Se recomienda hacer la instalación de los SVG y NO la fuente, ya que la fuente 
 yarn add @mui/icons-material
 ```
 
-### EJEMPLO DE Material UI - Vite.js
+## EJEMPLO DE Material UI - Vite.js
 
 [Aquí](https://mui.com/material-ui/getting-started/example-projects/) tenemos un listado de las diferentes tecnologías en las que se puede aplicar MUI
 
@@ -295,21 +295,57 @@ Aquí el ejemplo concreto con [Vite.js](https://github.com/mui/material-ui/tree/
 [stackblitz del ejemplo](https://stackblitz.com/github/mui/material-ui/tree/next/examples/material-ui-vite)
 
 
-## APIS USADAS
+# APIS USADAS
 - [breakingbadapi](https://breakingbadapi.com)
 ---
 
-## EXTRA INFO
-### REACT:  
+# EXTRA INFO
+## REACT:  
 - Para evitar que, por ejemplo, aparezca duplicado el console.log de la llamada al `useEffect`, eliminar el `<React.StrictMode>` del `main.jsx`.
 
-### GENERIC:
-
+## GENERIC:
 - Las dev tools de Chrome solo funcionan en desarollo, cuando estamos en producción, no funcionan.
-### VISUAL STUDIO CODE:  
-- Para crear un Functional Component `rafc`.
 
-### BUENAS PRÁCTICAS:
+## VISUAL STUDIO CODE:  
+- Para crear un Functional Component usamos el snippet`rafc`.
+
+- Para crear nuestro propio snippet (ejemplo, "redux-slice"):
+
+1. Command + Shift + P
+2. Buscamos "snippet"
+3. Seleccionamos el lenguaje (JavaScript)
+4. Nos abre un javascript.json con el ejemplo de snippet que nos servirá para preparar el nuestro:
+
+```
+	"Crear slice de Redux": {
+		"prefix": "redux-slice",
+		"body": [
+            "import { createSlice } from '@reduxjs/toolkit';",
+            "",
+            "export const ${TM_FILENAME_BASE} = createSlice({",
+            "    name: 'name',",
+            "    initialState: {",
+            "        counter: 10",
+            "    },",
+            "    reducers: {",
+            "        increment: (state, /* action */ ) => {",
+            "            state.counter += 1;",
+            "        },",
+            "    }",
+            "});",
+            "",
+            "",
+            "// Action creators are generated for each case reducer function",
+            "export const { increment } = ${TM_FILENAME_BASE}.actions;"
+            
+
+		],
+		"description": "Crear slice de Redux"
+	}
+```
+
+
+## BUENAS PRÁCTICAS:
 Cuando estamos trabajando un código, pero todavía no se ha terminado, para evitar pensar que está funcionando correctamente un `return`
 
 ```javascript
