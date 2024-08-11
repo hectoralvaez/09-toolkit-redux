@@ -319,6 +319,17 @@ throw new Error ('action.type "ABC" todavía no se ha definido');
 ---
 # 🏁 FIN SECCIÓN 18: Redux - ¿Qué es y conceptos? + React Redux
 
+## ⚙️ 262. Tarea - decrement e incrementBy
+Creamos los dos botones, 'decrementar' e 'incrementar con 2'.
+
+Para la función de `incrementBy`, necesitaremos pasar el payload, que és informaciín que recibe el recucervia `action.payload`.
+
+## ⚙️ 261. Usar valores del store y despachar acciones
+En esta clase usamos dos hooks (`useSelector` y `useDispatch`) de `react-redux`.
+
+`useSelector` nos servirá para seleccionar cualquier cosa que esté en nuestro `store`.
+`useDispatch` nos dará acceso a las acciones que despacha el `store`.
+
 ## ⚙️ 260. ConfigureStore y Slices
 
 En esta clase configuramos el `store` (nuestra "fuente de la verdad") con `ConfigureStore`.
@@ -327,7 +338,7 @@ En este `store` tendremos la infomración del estado de cualquier componente, po
 
 Usar `Redux`, que nos permite trabajar con `store`, no significa que TODOS los estados tengan que pasar por este `store`, podemos seguir usando estados locales con `useState` o `UseReducer`.
 
-Aquí vemos la ventaja de usar Redux Toolkit en lugar de construir nuestros propios estados como hacíamos en la clase "🪝 141. Idea general de un reducer - Vía código", donde teíamos que definir el state, action.payload, dispatch etc...
+Aquí vemos la ventaja de usar Redux Toolkit en lugar de construir nuestros propios estados con `UseReducer` como hacíamos en la clase "🪝 141. Idea general de un reducer - Vía código", y las siguientes donde teíamos que definir el state, action.payload, dispatch etc...
 
 ---
 
