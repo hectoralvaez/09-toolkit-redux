@@ -12,6 +12,10 @@ export const PokemonApp = () => {
   
 
   return (
-    <>PokemonApp</>
+    <>
+      <h1>
+        PokemonApp
+      </h1>
+    </>
   )
 }

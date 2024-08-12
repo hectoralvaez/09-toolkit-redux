@@ -357,6 +357,67 @@ throw new Error ('action.type "ABC" todavía no se ha definido');
 
 ---
 
+## ⚙️ 266. Axios
+
+En esta clase hacemos la petición http a la API.
+
+Ejemplo con fetch:
+
+```javascript
+export const getPokemons = ( page = 0 ) => {
+    return async( dispatch, getState ) => {
+        dispatch( startLoadingPokemons() );
+
+        // TODO: Petición http
+        const resp = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=10&offset=${ page * 10 }`);
+        const data = await resp.json();
+
+        dispatch( setPokemons({ pokemons: data.results, page: page + 1 }));
+    }
+}
+```
+
+Con Axios:
+
+Instalación de Axios:
+
+```
+yarn add axios
+```
+
+Creamos la API de pokemon:
+
+```javascript
+
+import axios from "axios";
+
+export const pokemonApi = axios.create({
+    baseURL: 'https://pokeapi.co/api/v2'
+})
+```
+
+Cómo lo gestionamos la API en el thunks con Axios:
+
+```javascript
+export const getPokemons = ( page = 0 ) => {
+    return async( dispatch, getState ) => {
+        dispatch( startLoadingPokemons() );
+
+        // TODO: Petición http
+        //OLD con 'fetch'
+        // const resp = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=10&offset=${ page * 10 }`);
+        // const data = await resp.json();
+
+        // NEW CON AXIOS:
+        const { data } = await pokemonApi.get(`/pokemon?limit=10&offset=${ page * 10 }`);
+
+        dispatch( setPokemons({ pokemons: data.results, page: page + 1 }));
+    }
+}
+```
+
+---
+
 ## ⚙️ 265. Thunks  (by ChatGpt)
 
 Los Thunks en React son una técnica utilizada en el manejo de estados y efectos secundarios, principalmente en el contexto de la gestión de estados con Redux. Un Thunk es una función que se retrasa o aplaza hasta un momento posterior. En el caso de Redux, un Thunk es una función que en lugar de devolver una acción (un objeto), devuelve otra función que recibe `dispatch` como argumento.
@@ -374,10 +435,10 @@ Un Thunk te permite escribir creadores de acciones que devuelven una función en
 
 - **Modularidad**: Facilitan la organización de la lógica de las acciones asíncronas dentro de los creadores de acciones.
 
-### Middleware redux-thunk
+### (NO USADO DE MOMENTO EN EL CURSO) Middleware redux-thunk
 Para que Redux soporte Thunks, necesitas un middleware específico llamado redux-thunk. Este middleware intercepta las acciones antes de que lleguen al reductor y, si la acción es una función, ejecuta esa función pasando `dispatch` y `getState` como argumentos.
 
-### Instala redux-thunk:
+#### Instala redux-thunk:
 ```
 npm install redux-thunk
 ```
@@ -398,7 +459,7 @@ const store = createStore(
 
 ---
 
-## ⚙️ 264. pokemonSlice
+## ⭐ ⚙️ 264. pokemonSlice
 Creamos dentro de nuestro `store` el `pokemonSlice.js` que nos permitirá controlar las acciones y el estado de todo lo referente a Pokemons.
 
 En nuestro `pokemonSlice.js` definimos el "nombre", el "estado inicial" y los "reducers":
