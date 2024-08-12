@@ -357,6 +357,47 @@ throw new Error ('action.type "ABC" todavía no se ha definido');
 
 ---
 
+## ⚙️ 265. Thunks  (by ChatGpt)
+
+Los Thunks en React son una técnica utilizada en el manejo de estados y efectos secundarios, principalmente en el contexto de la gestión de estados con Redux. Un Thunk es una función que se retrasa o aplaza hasta un momento posterior. En el caso de Redux, un Thunk es una función que en lugar de devolver una acción (un objeto), devuelve otra función que recibe `dispatch` como argumento.
+
+### Concepto de Thunk en Redux
+En Redux, las acciones son objetos planos que describen qué está ocurriendo en la aplicación. Sin embargo, cuando necesitamos realizar acciones asíncronas, como solicitudes HTTP, las acciones tradicionales no son suficientes. Aquí es donde los Thunks entran en juego.
+
+Un Thunk te permite escribir creadores de acciones que devuelven una función en lugar de una acción. Esta función recibe dispatch como argumento, permitiéndote despachar acciones de forma condicional o asíncrona.
+
+
+### Ventajas de usar Thunks
+- **Manejo asíncrono**: Permiten manejar operaciones asíncronas en Redux, como solicitudes HTTP o temporizadores.
+
+- **Control del flujo**: Puedes despachar acciones de manera condicional y en diferentes momentos según sea necesario.
+
+- **Modularidad**: Facilitan la organización de la lógica de las acciones asíncronas dentro de los creadores de acciones.
+
+### Middleware redux-thunk
+Para que Redux soporte Thunks, necesitas un middleware específico llamado redux-thunk. Este middleware intercepta las acciones antes de que lleguen al reductor y, si la acción es una función, ejecuta esa función pasando `dispatch` y `getState` como argumentos.
+
+### Instala redux-thunk:
+```
+npm install redux-thunk
+```
+
+Configura el middleware en tu `store` de Redux:
+```javascript
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
+import rootReducer from './reducers';
+
+const store = createStore(
+  rootReducer,
+  applyMiddleware(thunk)
+);
+```
+
+
+
+---
+
 ## ⚙️ 264. pokemonSlice
 Creamos dentro de nuestro `store` el `pokemonSlice.js` que nos permitirá controlar las acciones y el estado de todo lo referente a Pokemons.
 
