@@ -357,6 +357,44 @@ throw new Error ('action.type "ABC" todavía no se ha definido');
 
 ---
 
+## ⚙️ 267. Mostrar los pokemons paginadamente
+
+En esta clase cargamos el contenido que nos pasa la API 
+ 
+Con `useSelector` desestructuramos lo que necesitamos del state que devuelve `state.pokemon`:
+
+```javascript
+const { isLoading, pokemons = [], page } = useSelector( state => state.pokemon );
+```
+
+Una vez tenemos la información a mostrar, podemos hacer la llamada dentro del código "html" para:
+
+1. Mostrar si está cargando o no (`isLoading`).
+2. Listar los 10 primeros pokemons `pokemons.map` y desestructurando `name` para optimizar la llamada al nombre del pokemon y evitar tener que repetir `pokemon.name`.
+3. Paginar a los 10 siguientes con `onClick={ () => dispatch( getPokemons( page ) )}`.
+4. Deshabilitar el botón durante la carga: `disabled={ isLoading }`.
+
+
+```javascript
+<span>Loading: { isLoading ? 'True' : 'False' }</span>
+<ul>
+{
+    pokemons.map( ({name}) => (
+    <li key={ name }>{ name }</li>
+    ))
+}
+</ul>
+<button
+disabled={ isLoading }
+onClick={ () => dispatch( getPokemons( page ) )}
+>
+Next
+</button>
+```
+
+
+---
+
 ## ⚙️ 266. Axios
 
 En esta clase hacemos la petición http a la API.
@@ -396,7 +434,7 @@ export const pokemonApi = axios.create({
 })
 ```
 
-Cómo lo gestionamos la API en el thunks con Axios:
+Cómo gestionamos la API en el thunks con Axios:
 
 ```javascript
 export const getPokemons = ( page = 0 ) => {
