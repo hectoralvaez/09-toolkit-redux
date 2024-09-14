@@ -367,7 +367,7 @@ Hemos creado el component `TodoApp.jsx` donde recibiremos la información de la 
 Y también hemos creado `todosApi.js` dentro de la carpeta `store/apis`
 
 ```javascript
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query";
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const todosApi = createApi({
 
