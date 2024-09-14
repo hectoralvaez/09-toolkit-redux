@@ -357,6 +357,41 @@ throw new Error ('action.type "ABC" todavía no se ha definido');
 
 ---
 
+## ⭐ ⚙️ 268. RTK Query
+Ya viene integrado en `@reduxjs/toolkit`, así que si ya estamos trabajando con Redux Toolkit, no hay que instalar nada más.
+
+Nos facilita la obtención de datos y almacenar en caché.
+
+Hemos creado el component `TodoApp.jsx` donde recibiremos la información de la api.
+
+Y también hemos creado `todosApi.js` dentro de la carpeta `store/apis`
+
+```javascript
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query";
+
+export const todosApi = createApi({
+
+    reducerPath: 'todos',
+
+    baseQuery: fetchBaseQuery({
+        baseUrl: 'https://jsonplaceholder.typicode.com'
+    }),
+
+    endpoints: (builder) => ({
+
+        getTodos: builder.query({
+            query: () => '/todos'
+        })
+
+    })
+
+})
+
+export const { useGetTodosQuery } = todosApi;
+```
+
+---
+
 ## ⚙️ 267. Mostrar los pokemons paginadamente
 
 En esta clase cargamos el contenido que nos pasa la API 
