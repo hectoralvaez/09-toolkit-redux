@@ -357,6 +357,24 @@ throw new Error ('action.type "ABC" todavía no se ha definido');
 
 ---
 
+## ⭐ ⚙️ 270. Obtener un Todo por ID
+
+Muy interesante para ver cómo guarda en caché las llamadas a la api y los endpoints.
+
+Añadimos un nuevo 'endpoint' a nuestra `todosApi.js`
+
+```javascript
+getTodoById: builder.query({
+    query: (todoId) => `/todos/${ todoId }`
+}),
+```
+
+Que nos genera automáticamente un nuevo hook `useGetTodoByIdQuery`
+
+Usamos `useState` para controlar el estado de `todoId` para poder generar la navegación entre "todos" con las funciones `nextTodo` y `prevTodo`.
+
+---
+
 ## ⭐ ⚙️ 269. Consumir el API mediante el custom hook
 
 Añadimos al `store.js` 
