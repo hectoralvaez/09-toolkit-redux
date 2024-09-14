@@ -357,6 +357,43 @@ throw new Error ('action.type "ABC" todavía no se ha definido');
 
 ---
 
+## ⭐ ⚙️ 269. Consumir el API mediante el custom hook
+
+Añadimos al `store.js` 
+
+1. El reducer para todosApi:
+
+```javascript
+[todosApi.reducerPath]: todosApi.reducer,
+```
+
+2. El `middleware` [NOTA: No imporatar el `getDefaultMiddleware`, está obsoleto]:
+```javascript
+middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat( todosApi.middleware )
+```
+
+Ya podemos usar `useGetTodosQuery` en nuestro `TodoApp.jsx`:
+
+```javascript
+const { data: todos = [], isLoading } = useGetTodosQuery();
+```
+
+```javascript
+<h4>isLoading: { isLoading ? 'True' : 'False' }</h4>
+```
+
+```javascript
+<ul>
+    { todos.map( todo => (
+    <li key={todo.id}>
+        <strong>{ todo.completed ? 'DONE' : 'Pending' }</strong> { todo.title }
+    </li>
+    ))}
+</ul>
+```
+
+---
+
 ## ⭐ ⚙️ 268. RTK Query
 Ya viene integrado en `@reduxjs/toolkit`, así que si ya estamos trabajando con Redux Toolkit, no hay que instalar nada más.
 
