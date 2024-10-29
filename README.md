@@ -28,8 +28,17 @@ En la Terminal, nos vamos a la carpeta donde vamos a instalar el proyecto (en es
 En la Terminal, en la carpeta donde ya se ha instalado el proyecto ejecutamos:  
 `yarn`
 
-Para ejecutar la aplicación:
+Para ejecutar la aplicación:   
 `yarn dev`
+
+Para ejecutar la aplicación con la posibilidad de activar el host y poder acceder a la web dentro de la misma red, por ejemplo para testear con el móvil:   
+`yarn dev --host`
+
+Con este comando queda activado el host con la url que facilita a continuación:
+```
+➜  Local:   http://localhost:5173/
+➜  Network: http://192.168.1.149:5173/
+```
 
 ## ARRANCAR GIT  
 
